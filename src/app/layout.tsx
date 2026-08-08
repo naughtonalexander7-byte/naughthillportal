@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Source_Sans_3 } from "next/font/google";
+import AuthHashHandler from "@/components/AuthHashHandler";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${montserrat.variable} ${sourceSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-grey-light text-navy">
+        <AuthHashHandler />
         {children}
       </body>
     </html>

@@ -4,9 +4,9 @@ import LoginForm from "./LoginForm";
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ next?: string }>;
+  searchParams: Promise<{ next?: string; error?: string }>;
 }) {
-  const { next } = await searchParams;
+  const { next, error } = await searchParams;
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-navy px-4">
@@ -22,6 +22,13 @@ export default async function LoginPage({
           />
           <p className="mt-2 text-sm text-grey">Client Portal</p>
         </div>
+
+        {error === "invite_expired" && (
+          <p className="mb-4 rounded-md bg-amber-50 px-3 py-2 text-center text-sm text-amber-800">
+            That invite link has expired or already been used. Ask for a new
+            one.
+          </p>
+        )}
 
         <LoginForm next={next ?? "/dashboard"} />
 
